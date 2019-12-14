@@ -90,18 +90,6 @@ jobs:
       name: 'Golang 1.11: generated code'
       go: '1.11'
 
-    - name: 'Python: release a library'
-      stage: release
-      language: python
-      python: '3.6'
-      before_script:
-        - pip3 install twine
-        - cd python
-      script:
-        - python3 setup.py sdist bdist_wheel
-        - twine upload dist/*.tar.gz dist/*py3-none-any* -u $PYPI_LOGIN -p $PYPI_PASS
-      skip_cleanup: true
-
 before_cache:
   # make bblfsh images readable
   - sudo chmod -R 777 $HOME/bblfshd/images
